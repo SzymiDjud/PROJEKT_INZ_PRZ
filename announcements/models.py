@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
+from announcements.enums import AnnouncementsCategories
+from django_enumfield import enum
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -42,6 +44,13 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+class Announcement(models.Model):
+    title = models.CharField(max_length=40)
+    description = models.CharField(max_length=200)
+    category = enum.EnumField(enum=AnnouncementsCategories, verbose_name="Kategoria", null=False, blank=False,
+                              default=AnnouncementsCategories.BUY)
+    date =
 
 class Test(models.Model):
     name = models.TextField(max_length=50)

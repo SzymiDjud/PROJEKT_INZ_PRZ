@@ -12,3 +12,4 @@ class AnnouncementsCategories(enum.Enum):
     FREE: "Oddam",
     EXCHANGE: "Wymienię"
     }
+

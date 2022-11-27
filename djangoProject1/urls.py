@@ -21,7 +21,7 @@ from announcements.views import *
 
 router = routers.DefaultRouter()
 router.register(r'users',UserViewSet)
-router.register(r'tests2',Test2ViewSet)
+router.register(r'ann',AnnoucementViewSet)
 
 
 urlpatterns = [
@@ -30,7 +30,9 @@ urlpatterns = [
     path('api/',include(router.urls)),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     path('auth/', include('dj_rest_auth.urls')),
-    path('api/tests/',TestViewSet.as_view()),
-    path('api/tests/<int:pk>/',TestViewSetDetail.as_view()),
+    path('api/anno/',AnnoucementOwnViewSet.as_view()),
+    path('api/anno/<int:pk>/',AnnoucementOwnSetDetail.as_view()),
+
+
 
 ]

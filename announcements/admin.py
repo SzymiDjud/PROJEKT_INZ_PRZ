@@ -5,5 +5,6 @@ from announcements.models import *
 class UserAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(Test)
-admin.site.register(Test2)
+admin.site.register(Announcement)
+
+

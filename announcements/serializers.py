@@ -4,17 +4,18 @@ from announcements.models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email','password','test']
+        fields = ['url','id', 'email','password','is_active']
 
-class TestSerializer(serializers.ModelSerializer):
+
+
+class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Test
-        fields = ['id','name']
+        model = Announcement
+        fields = ['id','title','description',
+                  'category','date','author','tel_number','price','views']
 
 
-class TestSerializer2(serializers.ModelSerializer):
-    class Meta:
-        model = Test2
-        fields = ['id', 'name']
+
+
 
 

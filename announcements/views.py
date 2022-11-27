@@ -13,35 +13,37 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class Test2ViewSet(viewsets.ModelViewSet):
-    queryset = Test2.objects.all()
-    serializer_class = TestSerializer2
 
-class TestViewSet(APIView):
-    queryset = Test.objects.none()
+class AnnoucementViewSet(viewsets.ModelViewSet):
+    queryset = Announcement.objects.all()
+    serializer_class = AnnouncementSerializer
+
+
+class AnnoucementOwnViewSet(APIView):
+    queryset = Announcement.objects.none()
 
     def get(self,request,format=None):
-        queryset = Test.objects.all()
-        serializer = TestSerializer(queryset, many=True)
+        queryset = Announcement.objects.all()
+        serializer = AnnouncementSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = TestSerializer(data=request.data)
+        serializer = AnnouncementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class TestViewSetDetail(APIView):
+class AnnoucementOwnSetDetail(APIView):
 
     def get_object(self, pk):
         try:
-            return Test.objects.get(pk=pk)
-        except Test.DoesNotExist:
+            return Announcement.objects.get(pk=pk)
+        except Announcement.DoesNotExist:
             raise Http404
 
     def get(self,request,pk,format=None):
         queryset = self.get_object(pk=pk)
-        serializer = TestSerializer(queryset)
+        serializer = AnnouncementSerializer(queryset)
         return Response(serializer.data)

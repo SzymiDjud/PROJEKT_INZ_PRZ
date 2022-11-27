@@ -36,8 +36,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
-    email = models.EmailField(_('email address'), unique=True)
-    test = models.BooleanField(default=False)
+    email = models.EmailField(_('email_address'), unique=True)
 
     objects = UserManager()
     is_active = models.BooleanField(default=True)
@@ -50,10 +49,11 @@ class Announcement(models.Model):
     description = models.CharField(max_length=200)
     category = enum.EnumField(enum=AnnouncementsCategories, verbose_name="Kategoria", null=False, blank=False,
                               default=AnnouncementsCategories.BUY)
-    date =
+    date = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    tel_number = models.CharField(max_length=12)
+    price = models.FloatField()
+    views = models.IntegerField()
 
-class Test(models.Model):
-    name = models.TextField(max_length=50)
 
-class Test2(models.Model):
-    name = models.TextField(max_length=50)
+

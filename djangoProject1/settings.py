@@ -39,13 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'announcements.apps.AnnouncementsConfig',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-'allauth.account',
-    'allauth.socialaccount',
-    'allauth',
-'dj_rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
